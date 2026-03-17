@@ -67,35 +67,23 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 ## Setup
 
-One command. Pick where you want it.
+### Claude Code
 
-### Claude Code — global (all projects)
+Open Claude Code and tell it:
 
-```bash
-mkdir -p ~/.claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o ~/.claude/skills/cmux-browser.md
-```
+> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md` and save it to `~/.claude/skills/cmux-browser.md`
 
-Then use `/cmux-browser` in any conversation.
+That's it. From now on, use `/cmux-browser` in any conversation to give Claude the full browser reference.
 
-### Claude Code — project (shared with your team)
-
-```bash
-mkdir -p .claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o .claude/skills/cmux-browser.md
-```
-
-Commit it so everyone on the project gets it.
+If you want it scoped to a single project instead, save it to `.claude/skills/cmux-browser.md` in your project root and commit it — your whole team gets it.
 
 ### Codex
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md >> AGENTS.md
-```
+Tell Codex:
 
-Or keep it as a separate file and reference it in your `AGENTS.md`:
+> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md` and append it to `AGENTS.md`
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o cmux-browser.md
-```
+Or keep it as a separate file and add this to your `AGENTS.md`:
 
 ```markdown
 ## Browser Automation
@@ -105,7 +93,7 @@ When you need to interact with a browser, read the file `cmux-browser.md` for th
 
 ### Other agents
 
-Any CLI agent that can run shell commands can use cmux. Download the skill and point your agent's instruction file at it:
+Any CLI agent that can run shell commands can use cmux. Just download the skill file and point your agent's instruction file at it:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o cmux-browser.md
