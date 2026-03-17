@@ -1,5 +1,5 @@
 ---
-name: cmux-browser
+name: browser
 description: Control the cmux integrated browser for navigating, inspecting, and interacting with web pages from the terminal. Use when the user asks to open, test, or verify a web page visually.
 user_invocable: true
 ---

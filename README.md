@@ -21,7 +21,7 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 ## What's in the skill file
 
-`cmux-browser.md` is a single self-contained file with the complete CLI reference:
+`browser.md` is a single self-contained file with the complete CLI reference:
 
 | Category | Commands |
 |---|---|
@@ -71,37 +71,37 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 Open Claude Code and tell it:
 
-> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md` and save it to `~/.claude/skills/cmux-browser.md`
+> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and save it to `~/.claude/skills/browser.md`
 
-That's it. From now on, use `/cmux-browser` in any conversation to give Claude the full browser reference.
+That's it. From now on, use `/browser` in any conversation to give Claude the full browser reference.
 
-If you want it scoped to a single project instead, save it to `.claude/skills/cmux-browser.md` in your project root and commit it — your whole team gets it.
+If you want it scoped to a single project instead, save it to `.claude/skills/browser.md` in your project root and commit it — your whole team gets it.
 
 ### Codex
 
 Tell Codex:
 
-> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md` and append it to `AGENTS.md`
+> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and append it to `AGENTS.md`
 
 Or keep it as a separate file and add this to your `AGENTS.md`:
 
 ```markdown
 ## Browser Automation
 
-When you need to interact with a browser, read the file `cmux-browser.md` for the complete cmux browser CLI reference.
+When you need to interact with a browser, read the file `browser.md` for the complete cmux browser CLI reference.
 ```
 
-### Other agents
+### Other agents or manual installation
 
 Any CLI agent that can run shell commands can use cmux. Just download the skill file and point your agent's instruction file at it:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o cmux-browser.md
+curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o browser.md
 ```
 
 ## Reference
 
-Full command reference: [`cmux-browser.md`](cmux-browser.md)
+Full command reference: [`browser.md`](browser.md)
 
 Official cmux docs: [cmux.dev/docs/browser-automation](https://www.cmux.dev/docs/browser-automation)
 
