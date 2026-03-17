@@ -21,7 +21,7 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 ## What's in the skill file
 
-`browser.md` is a single self-contained file with the complete CLI reference:
+`browser/SKILL.md` is a single self-contained file with the complete CLI reference:
 
 | Category | Commands |
 |---|---|
@@ -71,29 +71,33 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 Open Claude Code (or Codex, or any agent) and tell it:
 
-> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and save it to `~/.claude/skills/browser.md`
+> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and save it to `~/.claude/skills/browser/SKILL.md`
 
 For Codex, tell it to save it as `browser.md` in your project root and reference it in `AGENTS.md`.
 
 **Important:** Restart your agent after installing. Skills are loaded at startup, so you need a fresh session for `/browser` to become available.
 
-If you want it scoped to a single project (shared with your team), save it to `.claude/skills/browser.md` in the project root and commit it.
+If you want it scoped to a single project (shared with your team), save it to `.claude/skills/browser/SKILL.md` in the project root and commit it.
 
 ### Option 2: Manual installation
 
-```bash
-# Global (all projects)
-mkdir -p ~/.claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o ~/.claude/skills/browser.md
+Global (all projects):
 
-# Or project-scoped (shared with your team)
-mkdir -p .claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o .claude/skills/browser.md
+```bash
+mkdir -p ~/.claude/skills/browser && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o ~/.claude/skills/browser/SKILL.md
+```
+
+Project-scoped (shared with your team):
+
+```bash
+mkdir -p .claude/skills/browser && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o .claude/skills/browser/SKILL.md
 ```
 
 **Important:** Restart your agent after installing for the skill to be available.
 
 ## Reference
 
-Full command reference: [`browser.md`](browser.md)
+Full command reference: [`SKILL.md`](browser.md)
 
 Official cmux docs: [cmux.dev/docs/browser-automation](https://www.cmux.dev/docs/browser-automation)
 
