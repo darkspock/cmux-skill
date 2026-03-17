@@ -84,82 +84,44 @@ Then copy the skill file to your project root:
 cp cmux-browser.md /path/to/your/project/cmux-browser.md
 ```
 
-## Examples
+## Use cases
 
-### Open your dev server and verify the page title
+These are real workflows where an agent uses the skill to get things done.
 
-```bash
-cmux browser open-split http://localhost:3000
-# Output: OK surface=surface:3 pane=pane:2 placement=split
+### "Build this component and verify it renders correctly"
 
-cmux browser surface:3 wait --load-state complete --timeout-ms 10000
-cmux browser surface:3 get title
-# Output: My App - Dashboard
-```
+The agent writes the code, starts the dev server, then opens the browser to check its own work:
 
-### Snapshot the accessibility tree and click a button
+> **You:** Build a signup form with email and password fields.
+>
+> **Agent:** _(writes the component, then)_ Let me verify it renders correctly...
+> _(opens `cmux browser open-split http://localhost:3000/signup`, takes a snapshot, confirms the form fields are present, fills them in, submits, and checks for the success message)_
 
-```bash
-cmux browser surface:3 snapshot --interactive --compact
-# Output:
-# - document "My App"
-#     - button "Sign In" [ref=e5]
-#     - link "Register" [ref=e6]
+### "Fix this broken page"
 
-cmux browser surface:3 click e5 --snapshot-after
-# Clicks "Sign In" and returns the updated accessibility tree
-```
+The agent opens the broken page, reads console errors, and uses that to diagnose the bug:
 
-### Fill and submit a login form
+> **You:** The dashboard page is showing a blank screen after the last deploy.
+>
+> **Agent:** Let me check what's happening...
+> _(opens the page, runs `errors list` and `console list`, finds a `TypeError: Cannot read properties of undefined`, traces it to the code, fixes it, reloads the browser, and confirms it renders)_
 
-```bash
-cmux browser surface:3 fill "#email" --text "user@example.com"
-cmux browser surface:3 fill "#password" --text "password123"
-cmux browser surface:3 click "button[type='submit']" --snapshot-after
-cmux browser surface:3 wait --text "Welcome"
-```
+### "Test the full login flow end to end"
 
-### Search Google
+The agent drives the browser through the entire flow like a user would:
 
-```bash
-cmux browser open-split https://www.google.com
-cmux browser surface:3 wait --load-state complete --timeout-ms 5000
-cmux browser surface:3 snapshot --interactive --compact
-# Find the search combobox ref, e.g. e9
-cmux browser surface:3 click e9
-cmux browser surface:3 type e9 "cmux terminal"
-cmux browser surface:3 press Enter
-cmux browser surface:3 wait --load-state complete --timeout-ms 10000
-cmux browser surface:3 snapshot --interactive --compact
-```
+> **You:** Make sure the login flow works after your auth changes.
+>
+> **Agent:** I'll walk through it...
+> _(opens the login page, fills email and password, clicks submit, waits for the redirect, snapshots the dashboard to confirm the user is logged in)_
 
-### Debug JS errors on a page
+### "Check what this page looks like right now"
 
-```bash
-cmux browser surface:3 errors list
-cmux browser surface:3 console list
-cmux browser surface:3 screenshot --out /tmp/debug.png
-```
+Quick visual check — the agent screenshots the page for you:
 
-### Evaluate JavaScript
-
-```bash
-cmux browser surface:3 eval "document.querySelectorAll('.item').length"
-# Output: 42
-
-cmux browser surface:3 eval "JSON.stringify(window.__APP_STATE__)"
-```
-
-### Save and restore a browser session
-
-```bash
-# Save current state (cookies, storage, URL)
-cmux browser surface:3 state save /tmp/session.json
-
-# Later, restore it
-cmux browser surface:3 state load /tmp/session.json
-cmux browser surface:3 reload
-```
+> **You:** What does the pricing page look like?
+>
+> **Agent:** _(opens `/pricing` in a split, takes a screenshot, and reads the accessibility tree to describe the layout and content)_
 
 ## Reference
 
