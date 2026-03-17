@@ -67,41 +67,35 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 ## Setup
 
-### Claude Code
+One command. Pick where you want it.
 
-**Option 1: Global skill** (available in all projects)
-
-```bash
-mkdir -p ~/.claude/skills
-cp cmux-browser.md ~/.claude/skills/cmux-browser.md
-```
-
-Then invoke it with `/cmux-browser`.
-
-**Option 2: Project skill** (shared with your team)
+### Claude Code — global (all projects)
 
 ```bash
-mkdir -p .claude/skills
-cp cmux-browser.md .claude/skills/cmux-browser.md
+mkdir -p ~/.claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o ~/.claude/skills/cmux-browser.md
 ```
 
-**Option 3: Reference in CLAUDE.md**
+Then use `/cmux-browser` in any conversation.
 
-```markdown
-## Browser Testing
+### Claude Code — project (shared with your team)
 
-When asked to test or verify UI in the browser, read `.claude/skills/cmux-browser.md` for the full cmux browser CLI reference.
+```bash
+mkdir -p .claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o .claude/skills/cmux-browser.md
 ```
+
+Commit it so everyone on the project gets it.
 
 ### Codex
 
-**Option 1:** Append directly to your `AGENTS.md`:
-
 ```bash
-cat cmux-browser.md >> AGENTS.md
+curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md >> AGENTS.md
 ```
 
-**Option 2:** Reference the file in `AGENTS.md`:
+Or keep it as a separate file and reference it in your `AGENTS.md`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o cmux-browser.md
+```
 
 ```markdown
 ## Browser Automation
@@ -111,7 +105,11 @@ When you need to interact with a browser, read the file `cmux-browser.md` for th
 
 ### Other agents
 
-Any CLI agent that can run shell commands can use cmux. Just make sure the agent reads `cmux-browser.md` before it starts — add it to whatever instruction file your agent supports.
+Any CLI agent that can run shell commands can use cmux. Download the skill and point your agent's instruction file at it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/cmux-browser.md -o cmux-browser.md
+```
 
 ## Reference
 
