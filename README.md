@@ -67,37 +67,29 @@ Works with [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex
 
 ## Setup
 
-### Claude Code
+### Option 1: Ask your AI agent
 
-Open Claude Code and tell it:
+Open Claude Code (or Codex, or any agent) and tell it:
 
 > Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and save it to `~/.claude/skills/browser.md`
 
-That's it. From now on, use `/browser` in any conversation to give Claude the full browser reference.
+For Codex, tell it to save it as `browser.md` in your project root and reference it in `AGENTS.md`.
 
-If you want it scoped to a single project instead, save it to `.claude/skills/browser.md` in your project root and commit it — your whole team gets it.
+**Important:** Restart your agent after installing. Skills are loaded at startup, so you need a fresh session for `/browser` to become available.
 
-### Codex
+If you want it scoped to a single project (shared with your team), save it to `.claude/skills/browser.md` in the project root and commit it.
 
-Tell Codex:
-
-> Download `https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md` and append it to `AGENTS.md`
-
-Or keep it as a separate file and add this to your `AGENTS.md`:
-
-```markdown
-## Browser Automation
-
-When you need to interact with a browser, read the file `browser.md` for the complete cmux browser CLI reference.
-```
-
-### Other agents or manual installation
-
-Any CLI agent that can run shell commands can use cmux. Just download the skill file and point your agent's instruction file at it:
+### Option 2: Manual installation
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o browser.md
+# Global (all projects)
+mkdir -p ~/.claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o ~/.claude/skills/browser.md
+
+# Or project-scoped (shared with your team)
+mkdir -p .claude/skills && curl -fsSL https://raw.githubusercontent.com/darkspock/cmux-skill/main/browser.md -o .claude/skills/browser.md
 ```
+
+**Important:** Restart your agent after installing for the skill to be available.
 
 ## Reference
 
